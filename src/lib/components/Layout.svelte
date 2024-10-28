@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import Slideshow from './Slideshow.svelte';
   import ThemeToggle from './ThemeToggle.svelte';
-  import type { Artwork } from '$lib/types/artwork';
+  import type { Artwork, ArtworkDetail } from '$lib/types/artwork';
   import { theme } from '$lib/stores/theme';
 
   export let artworks: Artwork[] = [
@@ -27,6 +27,19 @@
   const toggleMobileMenu = () => {
     isMobileMenuOpen = !isMobileMenuOpen;
   };
+
+  // Convert Artwork to ArtworkDetail for Slideshow
+  function convertToArtworkDetail(artwork: Artwork): ArtworkDetail {
+    return {
+      title: artwork.title,
+      description: artwork.description,
+      dimensions: '', // Default value
+      medium: '', // Default value
+      year: new Date().getFullYear().toString(),
+      mediaType: 'image',
+      mediaSource: artwork.images[0]
+    };
+  }
 </script>
 
 <div class="portfolio-layout">
@@ -43,26 +56,26 @@
     <h1 class="site-title">Shan's Art Work</h1>
     
     <ul class="main-nav">
-      <li><a href="#imaginary-landscape" on:click={() => isMobileMenuOpen = false}>1. Imaginary Landscape</a></li>
-      <li><a href="#studio-work" on:click={() => isMobileMenuOpen = false}>2. Studio Work</a></li>
-      <li><a href="#daily-study" on:click={() => isMobileMenuOpen = false}>3. Shanni Daily Study</a></li>
+      <li><a href="/imaginary-landscape" on:click={() => isMobileMenuOpen = false}>1. Imaginary Landscape</a></li>
+      <li><a href="/studio-work" on:click={() => isMobileMenuOpen = false}>2. Studio Work</a></li>
+      <li><a href="/daily-study" on:click={() => isMobileMenuOpen = false}>3. Shanni Daily Study</a></li>
     </ul>
     
     <ul class="secondary-nav">
       <li><a href="/about" on:click={() => isMobileMenuOpen = false}>About</a></li>
-      <li><a href="mailto:your@email.com">Email</a></li>
+      <li><a href="mailto:shan.liu03@gmail.com">Email</a></li>
       <li><a href="https://www.instagram.com/shanni_daily_drawing/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
     </ul>
     
     <div class="copyright">
-      ©2032 Future Text
+      ©{new Date().getFullYear()} Shan Liu. All rights reserved.
     </div>
   </nav>
 
   <main class="content">
     {#each artworks as artwork}
       <section class="artwork-section" id={artwork.title.toLowerCase().replace(/\s+/g, '-')}>
-        <Slideshow images={artwork.images} title={artwork.title} />
+        <Slideshow artworks={[convertToArtworkDetail(artwork)]} />
         <h2 class="artwork-title">{artwork.title}</h2>
         <p class="artwork-description">{artwork.description}</p>
       </section>
@@ -90,7 +103,7 @@
     left: 0;
     right: 0;
     padding: var(--space-md);
-    background: var(--color-background);
+    background: var(--color-tertiary);
     z-index: 1000;
     transition: var(--transition-normal);
   }
@@ -184,7 +197,7 @@
   .artwork-description {
     max-width: 70ch;
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Reduced font size for category detail descriptions */
   }
 
   .overlay {

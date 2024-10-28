@@ -1,24 +1,25 @@
 <!-- Previous script section remains the same -->
 
 <script lang="ts">
-  export let images: string[];
-  export let title: string;
-  
+  import type { ArtworkDetail } from '$lib/types/artwork';
+
+  export let artworks: ArtworkDetail[];
+
   let currentIndex = 0;
   let isTransitioning = false;
 
   function nextSlide() {
-    if (!isTransitioning && images.length > 1) {
+    if (!isTransitioning && artworks.length > 1) {
       isTransitioning = true;
-      currentIndex = (currentIndex + 1) % images.length;
+      currentIndex = (currentIndex + 1) % artworks.length;
       setTimeout(() => isTransitioning = false, 500);
     }
   }
 
   function previousSlide() {
-    if (!isTransitioning && images.length > 1) {
+    if (!isTransitioning && artworks.length > 1) {
       isTransitioning = true;
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      currentIndex = (currentIndex - 1 + artworks.length) % artworks.length;
       setTimeout(() => isTransitioning = false, 500);
     }
   }
@@ -26,23 +27,30 @@
 
 <div class="slideshow">
   <div class="slideshow-container">
-    <img
-      src={images[currentIndex]}
-      alt={`${title} - Image ${currentIndex + 1}`}
-      class="slide"
-      class:transitioning={isTransitioning}
-    />
+    {#if artworks[currentIndex].mediaType === 'video'}
+      <video controls class="slide" class:transitioning={isTransitioning}>
+        <source src={artworks[currentIndex].mediaSource} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    {:else}
+      <img
+        src={artworks[currentIndex].mediaSource}
+        alt={artworks[currentIndex].title}
+        class="slide"
+        class:transitioning={isTransitioning}
+      />
+    {/if}
     
-    {#if images.length > 1}
-      <button class="nav-button prev" on:click={previousSlide} aria-label="Previous image">
+    {#if artworks.length > 1}
+      <button class="nav-button prev" on:click={previousSlide} aria-label="Previous media">
         ←
       </button>
-      <button class="nav-button next" on:click={nextSlide} aria-label="Next image">
+      <button class="nav-button next" on:click={nextSlide} aria-label="Next media">
         →
       </button>
       
       <div class="dots">
-        {#each images as _, i}
+        {#each artworks as _, i}
           <button
             class="dot"
             class:active={i === currentIndex}
@@ -53,7 +61,7 @@
                 setTimeout(() => isTransitioning = false, 500);
               }
             }}
-            aria-label={`Go to image ${i + 1}`}
+            aria-label={`Go to media ${i + 1}`}
           />
         {/each}
       </div>

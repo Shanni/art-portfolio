@@ -51,7 +51,7 @@
     <ul class="secondary-nav">
       <li><a href="/about" on:click={() => isMobileMenuOpen = false}>About</a></li>
       <li><a href="mailto:your@email.com">Email</a></li>
-      <li><a href="https://instagram.com/your-handle">Instagram</a></li>
+      <li><a href="https://www.instagram.com/shanni_daily_drawing/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
     </ul>
     
     <div class="copyright">

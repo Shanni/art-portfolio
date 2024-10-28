@@ -1,0 +1,88 @@
+:root {
+  /* Color Palette */
+  --color-primary: #2D3047;     /* Deep blue-grey for main elements */
+  --color-secondary: #E94F37;   /* Coral red for accents */
+  --color-tertiary: #F6F7F8;    /* Light grey for backgrounds */
+  --color-text: #2D3047;        /* Dark grey for text */
+  --color-text-light: #6B6D7B;  /* Lighter grey for secondary text */
+  --color-background: #FFFFFF;   /* White for main background */
+  --color-border: rgba(45, 48, 71, 0.1); /* Subtle border color */
+  --color-overlay: rgba(45, 48, 71, 0.5); /* Overlay for modals/menus */
+  
+  /* Typography */
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-secondary: 'Playfair Display', Georgia, serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 2rem;      /* 32px */
+  --space-xl: 4rem;      /* 64px */
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(45, 48, 71, 0.1);
+  --shadow-md: 0 4px 8px rgba(45, 48, 71, 0.15);
+  --shadow-lg: 0 8px 16px rgba(45, 48, 71, 0.2);
+  
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-overlay: 500;
+  --z-tooltip: 600;
+  
+  /* Grid */
+  --container-max: 1200px;
+  --container-padding: var(--space-md);
+  
+  /* Layout */
+  --header-height: 60px;
+  --sidebar-width: 300px;
+}
+
+/* Dark theme variables (if needed) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #3D4263;
+    --color-secondary: #FF6B5B;
+    --color-tertiary: #1F2028;
+    --color-text: #E1E2E6;
+    --color-text-light: #9CA3AF;
+    --color-background: #121318;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-overlay: rgba(0, 0, 0, 0.7);
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+}

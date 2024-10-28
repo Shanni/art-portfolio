@@ -1,28 +1,32 @@
 import { writable } from 'svelte/store';
-import { browser } from '$app/environment';
 
 type Theme = 'light' | 'dark';
 
-// Get initial theme from localStorage or system preference
-const getInitialTheme = (): Theme => {
-  if (browser) {
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) return savedTheme;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  return 'light';
-};
-
-export const theme = writable<Theme>(getInitialTheme());
+// Create store with initial value
+const theme = writable<Theme>('light');
 
 // Update theme and save to localStorage
-export function toggleTheme() {
+function toggleTheme() {
   theme.update(current => {
     const newTheme = current === 'light' ? 'dark' : 'light';
-    if (browser) {
+    if (typeof window !== 'undefined') {
       localStorage.setItem('theme', newTheme);
       document.documentElement.setAttribute('data-theme', newTheme);
     }
     return newTheme;
   });
 }
+
+// Initialize theme from localStorage if in browser
+if (typeof window !== 'undefined') {
+  const savedTheme = localStorage.getItem('theme') as Theme;
+  if (savedTheme) {
+    theme.set(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    theme.set('dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+}
+
+export { theme, toggleTheme };

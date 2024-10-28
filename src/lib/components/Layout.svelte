@@ -80,7 +80,7 @@
   .portfolio-layout {
     display: flex;
     min-height: 100vh;
-    background-color: var(--color-tertiary);
+    background-color: var(--color-background);
   }
 
   .mobile-header {
@@ -113,8 +113,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-background);
-    border-right: 1px solid rgba(45, 48, 71, 0.1);
+    background-color: var(--color-tertiary);
+    border-right: 1px solid var(--color-border);
     transition: var(--transition-normal);
   }
 
@@ -164,9 +164,10 @@
   .artwork-section {
     margin-bottom: var(--space-xl);
     padding: var(--space-lg);
-    background: var(--color-tertiary);
+    background: var(--color-background);
     border-radius: 12px;
     transition: var(--transition-normal);
+    border: 1px solid var(--color-border);
   }
 
   .artwork-section:hover {
@@ -271,6 +272,7 @@
       align-items: center;
       height: var(--header-height);
       padding: 0 var(--space-md);
+      background: var(--color-tertiary);
     }
 
     .menu-toggle {
@@ -284,7 +286,7 @@
       padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) var(--space-lg);
       transform: translateX(-100%);
       z-index: 999;
-      background: var(--color-background);
+      background: var(--color-tertiary);
       box-shadow: var(--shadow-lg);
     }
 
@@ -300,6 +302,7 @@
       margin-left: 0;
       width: 100%;
       padding: calc(var(--header-height) + var(--space-md)) var(--space-md) var(--space-md);
+      background: var(--color-background);
     }
 
     .artwork-section {

@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Slideshow from './Slideshow.svelte';
+  import ThemeToggle from './ThemeToggle.svelte';
   import type { Artwork } from '$lib/types/artwork';
+  import { theme } from '$lib/stores/theme';
 
   export let artworks: Artwork[] = [
     {
@@ -66,6 +68,8 @@
       </section>
     {/each}
   </main>
+
+  <ThemeToggle />
 
   {#if isMobileMenuOpen}
     <div class="overlay" on:click={toggleMobileMenu}></div>
